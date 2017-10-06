@@ -11,8 +11,6 @@ class Flight extends CI_Model
 {
 
     var $data;
-    // The data comes from http://www.imdb.com/title/tt0094012/
-    // expressed using long-form array notaiton in case students use PHP 5.x
 
     function randomDate($sStartDate, $sEndDate, $sFormat = 'Y-m-d H:i:s')
     {
