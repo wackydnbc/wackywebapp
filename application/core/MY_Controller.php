@@ -15,7 +15,7 @@ class Application extends CI_Controller
 
 	/**
 	 * Constructor.
-	 * Establish view parameters. 
+	 * Establish view parameters.
 	 * Common helpers are specified in config/autoload.
 	 */
 	function __construct()

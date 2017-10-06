@@ -5,9 +5,9 @@
  * so that we don't have to worry about any database setup.
  * This would be considered a "mock database" model.
  *
- * @author jim
+ * @author Connor
  */
-class Fleet extends CI_Model
+class Plane extends CI_Model
 {
 
 	// The data comes from http://www.imdb.com/title/tt0094012/
