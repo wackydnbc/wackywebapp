@@ -12,3 +12,4 @@ Additions: Newest additions last
 ## 2017-10-05 2:00PM  
 ### Added  
 - Initial project template scaffolding
+### Added Models, Dummy Data, View and Controller for Flights
