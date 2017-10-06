@@ -20,7 +20,18 @@ class Welcome extends Application {
 	 */
 	public function index()
 	{
-		$this->data['pagebody'] = 'homepage';
+		$airlines_count		  = $this->plane->count();
+		$flights_count		  = $this->flight->count();
+		$base_airport		  = $this->flight->getBaseAirport();
+		$destination_airports = $this->flight->getDestinationAirports();
+
+		$this->data['pagebody'] 		 	= 'homepage';
+		$this->data['airlines_count'] 	 	= $airlines_count;
+		$this->data['base_airport_code'] 	= $base_airport["airport_code"];
+		$this->data['base_location'] 	 	= $base_airport["location"];
+		$this->data['flights_count']		= $flights_count;
+
+		$this->data = array_merge($this->data, $destination_airports);
 
 		$this->render();
 	}

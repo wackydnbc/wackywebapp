@@ -1,69 +1,40 @@
-<div class="panel panel-default">
-	<div class="panel-heading">
-		Data to show
-		<!-- TODO: homepage requirements
-		<ol>
-			<li># of planes in your fleet</li>
-			<li># flights scheduled on any day</li>
-			<li>names of base airport</li>
-			<li>those that you fly to</li>
-		</ol>
-		-->
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-info">
+			<div class="panel-heading">Airlines</div>
+			<div class="panel-body">
+				 {airlines_count} Airlines Active
+			</div>
+		</div>
 	</div>
-	<div class="panel-body">
-		<table class="table table-striped table-hover">
-			<thead>
-			<tr>
-				<th>#</th>
-				<th>Column heading</th>
-				<th>Column heading</th>
-				<th>Column heading</th>
-			</tr>
-			</thead>
-			<tbody>
-			<tr>
-				<td>1</td>
-				<td>Column content</td>
-				<td>Column content</td>
-				<td>Column content</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>Column content</td>
-				<td>Column content</td>
-				<td>Column content</td>
-			</tr>
-			<tr class="info">
-				<td>3</td>
-				<td>Column content</td>
-				<td>Column content</td>
-				<td>Column content</td>
-			</tr>
-			<tr class="success">
-				<td>4</td>
-				<td>Column content</td>
-				<td>Column content</td>
-				<td>Column content</td>
-			</tr>
-			<tr class="danger">
-				<td>5</td>
-				<td>Column content</td>
-				<td>Column content</td>
-				<td>Column content</td>
-			</tr>
-			<tr class="warning">
-				<td>6</td>
-				<td>Column content</td>
-				<td>Column content</td>
-				<td>Column content</td>
-			</tr>
-			<tr class="active">
-				<td>7</td>
-				<td>Column content</td>
-				<td>Column content</td>
-				<td>Column content</td>
-			</tr>
-			</tbody>
-		</table>
+	<div class="col-md-6">
+		<div class="panel panel-danger">
+			<div class="panel-heading">Base Airport</div>
+			<div class="panel-body">
+			 {base_airport_code} - {base_location}
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-success">
+			<div class="panel-heading">Destination Airports</div>
+			<div class="panel-body">
+				<p>{dest1}</p>
+				<p>{dest2}</p>
+				<p>{dest3}</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-warning">
+			<div class="panel-heading">Number of Flight Schedules Today</div>
+			<div class="panel-body">
+				{flights_count} flight schedules today!
+			</div>
+		</div>
 	</div>
 </div>
