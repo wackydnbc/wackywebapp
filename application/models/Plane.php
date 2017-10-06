@@ -10,7 +10,7 @@
 class Plane extends CI_Model
 {
 
-	// The data comes from http://www.imdb.com/title/tt0094012/
+	// The data comes from httpview-source:https://wacky.jlparry.com/info/airplanes
 	// expressed using long-form array notaiton in case students use PHP 5.x
 
 	var $data = array(
@@ -37,13 +37,13 @@ class Plane extends CI_Model
 		}
 	}
 
-	// retrieve a single quote, null if not found
+	// retrieve a single plane, null if not found
 	public function get($which)
 	{
 		return !isset($this->data[$which]) ? null : $this->data[$which];
 	}
 
-	// retrieve all of the quotes
+	// retrieve all of the planes (entire fleet)
 	public function all()
 	{
 		return $this->data;

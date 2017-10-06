@@ -1,5 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+/**
+ * controllers/Fleet.php
+ *
+ * Fleet controller, inherits from default controller (core/MY_Controller.php)
+ *
+ *
+ * @author		Connor Jang
+ * ------------------------------------------------------------------------
+ */
 
 class Fleet extends Application
 {
@@ -10,7 +19,7 @@ class Fleet extends Application
 	}
 
 	/**
-	 * Homepage for our app
+	 * Fleet page, using the entire fleet
 	 */
 	public function index()
 	{
@@ -29,10 +38,10 @@ class Fleet extends Application
 		// this is the view we want shown
 		$this->data['pagebody'] = 'plane';
 
-		// build the list of authors, to pass on to our view
+		// build the list of planes, to pass on to our view
 		$source = $this->plane->get($key);
 
-		// pass on the data to present, adding the author record's fields
+		// pass on the data to present, adding the plane's record's fields
 		$this->data = array_merge($this->data, (array) $source);
 
 		$this->render();
