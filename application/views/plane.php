@@ -1,7 +1,6 @@
-<div class="row">
-	<div class="span4">
-      <div class="span10">
-        	<table border="1" cellpadding="10">
+<div class="panel panel-default">
+	<div class="panel-body">
+		<table class="table table-striped table-hover">
           <tr>
             <td>ID</td><td>{id}
           </tr>
