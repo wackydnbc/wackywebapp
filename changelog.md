@@ -4,12 +4,11 @@ Team conventions: Allman notation, markdown for changelog
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)  
 Additions: Newest additions last
 
-## 2017-10-05 1:20PM  
-### Added  
+## 2017-10-05  
 - Inital project setup  
-
-
-## 2017-10-05 2:00PM  
-### Added  
-- Initial project template scaffolding
-### Added Models, Dummy Data, View and Controller for Flights
+- Initial project template scaffolding  
+  
+## 2017-10-06  
+- Cleaned up user interface to match pages  
+- Initial homepage and fleet pages setup  
+- Added Models, Dummy Data, View and Controller for Flights  
