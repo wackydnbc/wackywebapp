@@ -12,3 +12,4 @@ Additions: Newest additions last
 - Cleaned up user interface to match pages  
 - Initial homepage and fleet pages setup  
 - Added Models, Dummy Data, View and Controller for Flights  
+- Info controller done with fleet and flights subcontrollers  
