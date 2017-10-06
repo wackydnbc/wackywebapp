@@ -1,5 +1,12 @@
 /* CSS definition file containing site stylesheet */
-body {}
+body {
+    background: url('/assets/images/airport-background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 #content {width:100%; margin-left:5% auto;margin-right:5% auto;}
 #footer {font-size: small; font-style:italic;text-align:center;}
 .row>div {margin-bottom:10px;}
+#logo{width:60px; margin-top:9px; margin-left:5px;}
