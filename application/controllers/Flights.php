@@ -21,7 +21,7 @@ class Flights extends Application {
 	public function index()
 	{
 		$this->data['flights'] = $this->flight->all();
-		$this->data['pagebody'] = 'Flights';
+		$this->data['pagebody'] = 'flights';
 		$this->render();
 	}
 }
