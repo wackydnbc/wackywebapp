@@ -10,8 +10,8 @@ class Info extends Application
 
 	public function index()
 	{
-	    $this->data['pagebody'] = 'info';
 		$this->data['pagetitle'] = 'Info';
+	    $this->data['pagebody'] = 'info';
 	    $this->render();
 	}
 
