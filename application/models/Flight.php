@@ -81,16 +81,33 @@ class Flight extends CI_Model
         }
     }
 
-    // retrieve a single quote, null if not found
+    // retrieve a single flight, null if not found
     public function get($which)
     {
         return !isset($this->data[$which]) ? null : $this->data[$which];
     }
 
-    // retrieve all of the quotes
+    // retrieve all of the flights
     public function all()
     {
         return $this->data;
+    }
+
+    public function getBaseAirport()
+    {
+        return array("airport_code" => "YYJ", "location" => "Victoria, BC");
+    }
+
+    public function getDestinationAirports()
+    {
+        return array("dest1" => "YVR - Vancouver, BC",
+                     "dest2" => "YBL - Campbell River, BC",
+                     "dest3" => "YPW - Powell River, BC");
+    }
+
+    public function count()
+    {
+        return count($this->data);
     }
 
 }
