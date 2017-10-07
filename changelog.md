@@ -1,6 +1,6 @@
 # Change Log
 Team membership: Niko Arellano (Captain), Bryn Beaudry (Mate), Connor Jang (Mate), Daniel Capacio (Mate)  
-Team conventions: Allman notation, markdown for changelog  
+Team conventions: Allman notation  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)  
 Additions: Newest additions last
 
@@ -13,8 +13,8 @@ Additions: Newest additions last
 - Initial homepage and fleet pages setup  
 - Added Models, Dummy Data, View and Controller for Flights  
 - Info controller done with fleet and flights subcontrollers  
-
-## 2017-10-06
-- Fleet page and single plane detail view added
-- Flights page added, pulling data from flight model
-- Added about page and Controller
+- Fleet page and single plane detail view added  
+- Flights page added, pulling data from flight model  
+- Added about page and Controller  
+- Homepage now renders # of flights available, destination airports, base airports, # of airlines  
+- Updated about page  

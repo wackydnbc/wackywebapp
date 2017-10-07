@@ -23,10 +23,10 @@ class Fleet extends Application
 	 */
 	public function index()
 	{
-    $this->data['pagebody'] = 'fleet';
-  	$this->data['fleet'] = $this->plane->all();
-
-  	$this->render();
+		$this->data['pagetitle'] = 'List of Planes';
+		$this->data['pagebody'] = 'fleet';
+		$this->data['fleet'] = $this->plane->all();
+		$this->render();
 	}
 
   /**

@@ -25,6 +25,7 @@ class Welcome extends Application {
 		$base_airport		  = $this->flight->getBaseAirport();
 		$destination_airports = $this->flight->getDestinationAirports();
 
+		$this->data['pagetitle']            = 'Home';
 		$this->data['pagebody'] 		 	= 'homepage';
 		$this->data['airlines_count'] 	 	= $airlines_count;
 		$this->data['base_airport_code'] 	= $base_airport["airport_code"];

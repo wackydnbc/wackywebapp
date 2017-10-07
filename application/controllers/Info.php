@@ -8,19 +8,28 @@ class Info extends Application
 		parent::__construct();
 	}
 
+	/**
+	 * Initial info page, revealing links to show fleet and flights json data.
+	 */
 	public function index()
 	{
-	    $this->data['pagebody'] = 'info';
 		$this->data['pagetitle'] = 'Info';
+	    $this->data['pagebody'] = 'info';
 	    $this->render();
 	}
 
+	/**
+	 * Subcontroller displaying json data from the plane model.
+	 */
 	public function fleet()
 	{
 		header('Content-Type: application/json');
 		echo json_encode($this->plane->all(), JSON_PRETTY_PRINT);
 	}
 
+	/**
+	 * Subcontroller displaying json data from the flight model.
+	 */
 	public function flights()
 	{
 		header('Content-Type: application/json');
