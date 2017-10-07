@@ -37,7 +37,7 @@ class Flight extends CI_Model
                 'departure_time' => $this->randomDate(date('Y-m-d H:i:s',strtotime('+10 hours + 30 minutes')), date('Y-m-d H:i:s',strtotime('+10 hours +30 minutes'))),
                 'arrival_time' => $this->randomDate(date('Y-m-d H:i:s',strtotime('+11 Hours + 30 minutes')), date('Y-m-d H:i:s',strtotime('+12 Hours'))),
                 'departure_airport' => 'YBL',
-                'arrival_airport'	 => 'YJJ',
+                'arrival_airport'	 => 'YYJ',
             ),
             '3' => array(
             'plane_id' => 'x1',
@@ -51,7 +51,7 @@ class Flight extends CI_Model
             'departure_time' => $this->randomDate(date('Y-m-d H:i:s',strtotime('+15 hours')), date('Y-m-d H:i:s',strtotime('+15 hours'))),
             'arrival_time' => $this->randomDate(date('Y-m-d H:i:s',strtotime('+17 Hours')), date('Y-m-d H:i:s',strtotime('+17 Hours + 30 minutes'))),
             'departure_airport' => 'YBL',
-            'arrival_airport'	 => 'YJJ',
+            'arrival_airport'	 => 'YYJ',
             ),
             '5'	 => array(
                 'plane_id' => 'x2',
