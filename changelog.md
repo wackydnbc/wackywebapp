@@ -18,3 +18,4 @@ Additions: Newest additions last
 - Fleet page and single plane detail view added
 - Flights page added, pulling data from flight model
 - Added about page and Controller
+- Randomized Flight data for today's date was modified to meet all the requirements.
