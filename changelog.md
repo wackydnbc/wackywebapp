@@ -18,3 +18,5 @@ Additions: Newest additions last
 - Added about page and Controller  
 - Homepage now renders # of flights available, destination airports, base airports, # of airlines  
 - Updated about page  
+- Randomized Flight data for today's date was modified to meet all the requirements.
+
