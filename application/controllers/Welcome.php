@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends Application {
 
 	/**
 	 * Index Page for this controller.
@@ -20,6 +20,20 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$airlines_count		  = $this->plane->count();
+		$flights_count		  = $this->flight->count();
+		$base_airport		  = $this->flight->getBaseAirport();
+		$destination_airports = $this->flight->getDestinationAirports();
+
+		$this->data['pagetitle']            = 'Home';
+		$this->data['pagebody'] 		 	= 'homepage';
+		$this->data['airlines_count'] 	 	= $airlines_count;
+		$this->data['base_airport_code'] 	= $base_airport["airport_code"];
+		$this->data['base_location'] 	 	= $base_airport["location"];
+		$this->data['flights_count']		= $flights_count;
+
+		$this->data = array_merge($this->data, $destination_airports);
+
+		$this->render();
 	}
 }
