@@ -29,14 +29,14 @@ class Flight extends CI_Model
             '1' => array(
                 'plane_id' => 'x1',
                 'departure_time' => $this->randomDate(date('Y-m-d H:i:s',strtotime('+8 hour', $today)), date('Y-m-d H:i:s',strtotime('+8 hour', $today))),
-                'arrival_time' => $this->randomDate(date('Y-m-d H:i:s',strtotime('+9 hours', $today)), date('Y-m-d H:i:s',strtotime('+10 hours', $today))),
+                'arrival_time' => $this->randomDate(date('Y-m-d H:i:s',strtotime('+9 hours +45 minutes', $today)), date('Y-m-d H:i:s',strtotime('+10 hours', $today))),
                 'departure_airport' => 'YYJ',
                 'arrival_airport' => 'YBL'
             ),
             '2' => array(
                 'plane_id' => 'x1',
                 'departure_time' => $this->randomDate(date('Y-m-d H:i:s',strtotime('+10 hours + 30 minutes', $today)), date('Y-m-d H:i:s',strtotime('+10 hours +30 minutes', $today))),
-                'arrival_time' => $this->randomDate(date('Y-m-d H:i:s',strtotime('+11 Hours + 30 minutes', $today)), date('Y-m-d H:i:s',strtotime('+12 Hours', $today))),
+                'arrival_time' => $this->randomDate(date('Y-m-d H:i:s',strtotime('+12 Hours', $today)), date('Y-m-d H:i:s',strtotime('+12 Hours', $today))),
                 'departure_airport' => 'YBL',
                 'arrival_airport'	 => 'YYJ',
             ),
