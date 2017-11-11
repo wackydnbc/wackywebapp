@@ -111,12 +111,13 @@ class Flight extends Entity
     public function __construct()
     {
         parent::__construct();
+        /*
         $this->data = $this->generateData();
         // inject each "record" key into the record itself, for ease of presentation
         foreach ($this->data as $key => $record) {
             $record['key'] = $key;
             $this->data[$key] = $record;
-        }
+        }*/
     }
 
     // retrieve a single flight, null if not found

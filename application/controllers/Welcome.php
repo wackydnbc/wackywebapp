@@ -20,8 +20,8 @@ class Welcome extends Application {
 	 */
 	public function index()
 	{
-		$airlines_count		  = $this->plane->count();
-		$flights_count		  = $this->flight->count();
+		$airlines_count		  = $this->planeslist->count();
+		$flights_count		  = $this->flightslist->count();
 		$base_airport		  = $this->flight->getBaseAirport();
 		$destination_airports = $this->flight->getDestinationAirports();
 

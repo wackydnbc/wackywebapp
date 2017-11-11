@@ -20,7 +20,7 @@ class Flights extends Application {
 	 */
 	public function index()
 	{
-    $role = $this->session->userdata('userrole');
+    	$role = $this->session->userdata('userrole');
 		$this->data['pagetitle'] = 'Scheduled Flights ('. $role . ')';
 		$this->data['pagebody'] = 'flights';
 		$this->data['flights'] = $this->flightslist->all();
