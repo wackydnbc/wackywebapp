@@ -22,7 +22,7 @@ class Flights extends Application {
 	{
 		$this->data['pagetitle'] = 'Scheduled Flights';
 		$this->data['pagebody'] = 'flights';
-		$this->data['flights'] = $this->flight->all();
+		$this->data['flights'] = $this->flightslist->all();
 		$this->render();
 	}
 }

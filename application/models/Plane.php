@@ -7,7 +7,7 @@
  *
  * @author Connor
  */
-class Plane extends CI_Model
+class Plane extends Entity
 {
 
 	// The data comes from httpview-source:https://wacky.jlparry.com/info/airplanes

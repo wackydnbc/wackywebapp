@@ -25,7 +25,7 @@ class Fleet extends Application
 	{
 		$this->data['pagetitle'] = 'List of Planes';
 		$this->data['pagebody'] = 'fleet';
-		$this->data['fleet'] = $this->plane->all();
+		$this->data['fleet'] = $this->planeslist->all();
 		$this->render();
 	}
 
