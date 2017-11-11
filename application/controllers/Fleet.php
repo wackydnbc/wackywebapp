@@ -23,8 +23,8 @@ class Fleet extends Application
 	 */
 	public function index()
 	{
-    $role = $this->session->userdata('userrole');
-    $this->data['pagetitle'] = 'List of Planes('. $role . ')';
+    	$role = $this->session->userdata('userrole');
+    	$this->data['pagetitle'] = 'List of Planes('. $role . ')';
 		$this->data['pagebody'] = 'fleet';
 		$this->data['fleet'] = $this->planeslist->all();
 		$this->render();
@@ -39,7 +39,7 @@ class Fleet extends Application
 		$this->data['pagebody'] = 'plane';
 
 		// build the list of planes, to pass on to our view
-		$source = $this->plane->get( $key );
+		$source = $this->planeslist->get( $key );
 
 		// pass on the data to present, adding the plane's record's fields
 		$this->data = array_merge( $this->data, (array) $source );

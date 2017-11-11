@@ -12,4 +12,9 @@ class PlanesList extends CSV_Model
     {
         parent::__construct(APPPATH . '../data/planes.csv', 'id');
     }
+
+    public function count()
+	{
+		return count($this->_data);
+	}
 }

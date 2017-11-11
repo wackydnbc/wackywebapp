@@ -12,7 +12,7 @@ class Plane extends Entity
 
 	// The data comes from httpview-source:https://wacky.jlparry.com/info/airplanes
 	// expressed using long-form array notaiton in case students use PHP 5.x
-
+	/*
 	var $data = array(
 		'1'	 => array('id'	 => 'x1', 'manufacturer'	 => 'Cessna', 'model' => 'Citation Mustang',
 			'price'	 => '2770', 'seats' => '4', 'reach' => '2130', 'cruise' => '630', 'takeoff' => '950', 'hourly' => '1015'),
@@ -23,6 +23,7 @@ class Plane extends Entity
     '3'	 => array('id'	 => 'x3', 'manufacturer'	 => 'Embraer', 'model' => 'Phenom 100',
 			'price'	 => '2980', 'seats' => '4', 'reach' => '2148', 'cruise' => '704', 'takeoff' => '1036', 'hourly' => '926'),
 	);
+	*/
 
 	// Constructor
 	public function __construct()
@@ -30,11 +31,13 @@ class Plane extends Entity
 		parent::__construct();
 
 		// inject each "record" key into the record itself, for ease of presentation
+		/*
 		foreach ($this->data as $key => $record)
 		{
 			$record['key'] = $key;
 			$this->data[$key] = $record;
 		}
+		*/
 	}
 
 	// retrieve a single plane, null if not found
