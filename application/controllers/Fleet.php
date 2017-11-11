@@ -26,7 +26,7 @@ class Fleet extends Application
     $role = $this->session->userdata('userrole');
     $this->data['pagetitle'] = 'List of Planes('. $role . ')';
 		$this->data['pagebody'] = 'fleet';
-		$this->data['fleet'] = $this->plane->all();
+		$this->data['fleet'] = $this->planeslist->all();
 		$this->render();
 	}
 

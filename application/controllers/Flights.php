@@ -23,7 +23,7 @@ class Flights extends Application {
     $role = $this->session->userdata('userrole');
 		$this->data['pagetitle'] = 'Scheduled Flights ('. $role . ')';
 		$this->data['pagebody'] = 'flights';
-		$this->data['flights'] = $this->flight->all();
+		$this->data['flights'] = $this->flightslist->all();
 		$this->render();
 	}
 }

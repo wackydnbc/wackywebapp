@@ -7,9 +7,8 @@
  *
  * @author jim
  */
-class Flight extends CI_Model
+class Flight extends Entity
 {
-
     var $data;
 
     function randomDate($sStartDate, $sEndDate, $sFormat = 'Y-m-d H:i:s')
