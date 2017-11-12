@@ -26,7 +26,7 @@ class Fleet extends Application
     	$role = $this->session->userdata('userrole');
     	$this->data['pagetitle'] = 'List of Planes('. $role . ')';
 		$this->data['pagebody'] = 'fleet';
-		$this->data['fleet'] = $this->planeslist->all();
+		$this->data['fleet'] = $this->planesList->all();
 		$this->render();
 	}
 
@@ -39,7 +39,7 @@ class Fleet extends Application
 		$this->data['pagebody'] = 'plane';
 
 		// build the list of planes, to pass on to our view
-		$source = $this->planeslist->get( $key );
+		$source = $this->planesList->get( $key );
 
 		// pass on the data to present, adding the plane's record's fields
 		$this->data = array_merge( $this->data, (array) $source );
