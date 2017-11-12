@@ -24,8 +24,7 @@ class Fleet extends Application
 	 */
 	public function index()
 	{
-		$planes = $this->planesList->all(); // get all the tasks
-		$this->show_page($planes);
+		$this->page(1);
 	}
 	
 	// Show a single page of todo items
@@ -48,8 +47,38 @@ class Fleet extends Application
 		$this->render();
 	}
 
+	// Extract & handle a page of items, defaulting to the beginning
+	function page($num = 1)
+	{
+		$records = $this->planesList->all(); // get all the tasks
+		$planes = array(); // start with an empty extract
 
-
+		// use a foreach loop, because the record indices may not be sequential
+		$index = 0; // where are we in the tasks list
+		$count = 0; // how many items have we added to the extract
+		$start = ($num - 1) * $this->planes_per_page;
+		foreach($records as $plane) {
+			if ($index++ >= $start) {
+				$planes[] = $plane;
+				$count++;
+			}
+			if ($count >= $this->planes_per_page) break;
+		}
+		$this->data['pagination'] = $this->pagenav($num);
+		$this->show_page($planes);
+	}
+	
+	// Build the pagination navbar
+	private function pagenav($num) {
+		$lastpage = ceil($this->planesList->size() / $this->planes_per_page);
+		$parms = array(
+			'first' => 1,
+			'previous' => (max($num-1,1)),
+			'next' => min($num+1,$lastpage),
+			'last' => $lastpage
+		);
+		return $this->parser->parse('fleetnav',$parms,true);
+	}
 
   /**
 	 * Show just one Plane.
