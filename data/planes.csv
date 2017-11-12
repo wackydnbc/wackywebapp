@@ -1,4 +1,4 @@
-id,manufacturer,model,price,seats,reach,cruise,takeoff,hourly
-x1,Cessna,"Citation Mustang",2770,4,2130,630,950,1015
-x2,Pilatus,"PC-12 NG",3300,9,4147,500,450,727
-x3,Embraer,"Phenom 100",2980,4,2148,704,1036,926
+id,airplaneId
+x1,mustang
+x2,pc12ng
+x3,phenom100

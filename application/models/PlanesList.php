@@ -16,5 +16,46 @@ class PlanesList extends CSV_Model
     public function count()
 	{
 		return count($this->_data);
-	}
+    }
+    
+    public function all() 
+    {
+        $xwing_planes = parent::all();
+        $wacky_planes = json_decode($this->wackymodel->getAirplanes());
+
+        $xwing_fleet = array();
+
+        foreach($xwing_planes as $xwing) 
+        {
+            foreach($wacky_planes as $wacky)
+            {
+                if($xwing->airplaneId == $wacky->id)
+                {
+                    $xwing_plane = array();
+                    $xwing_plane['id']           = $xwing->id;
+                    $xwing_plane['key']          = $xwing->airplaneId;
+                    $xwing_plane['model']        = $wacky->model;
+                    $xwing_plane['manufacturer'] = $wacky->manufacturer;
+
+                    array_push($xwing_fleet, $xwing_plane);
+                }
+            }
+        }
+
+        return $xwing_fleet;
+    }
+
+    /**
+     * Returns one plane in Lightning Air's fleet
+     */
+    public function get($id, $key2 = null)
+    {
+        $plane       = parent::get($id);
+
+        $xwing_plane = json_decode($this->wackymodel->getAirplane($plane->airplaneId));
+        
+        $xwing_plane->id = $id;
+
+        return $xwing_plane;
+    }
 }

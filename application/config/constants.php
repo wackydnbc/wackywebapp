@@ -87,3 +87,15 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 // Define user/admin roles
 defined('ROLE_GUEST') OR define('ROLE_GUEST', 'Guest');
 defined('ROLE_OWNER') OR define('ROLE_OWNER', 'Owner');
+
+
+/*
+|--------------------------------------------------------------------------
+| Wacky Urls
+|--------------------------------------------------------------------------
+|
+*/
+defined('WACKY_AIRLINES_URL')  OR define('WACKY_AIRLINES_URL', 'https://wacky.jlparry.com/info/airlines/');
+defined('WACKY_AIRPORTS_URL')  OR define('WACKY_AIRPORTS_URL', 'https://wacky.jlparry.com/info/airports/');
+defined('WACKY_AIRPLANES_URL') OR define('WACKY_AIRPLANES_URL', 'https://wacky.jlparry.com/info/airplanes/');
+defined('WACKY_REGIONS_URL')   OR define('WACKY_REGIONS_URL', 'https://wacky.jlparry.com/info/regions/');
