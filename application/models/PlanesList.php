@@ -21,7 +21,7 @@ class PlanesList extends CSV_Model
     public function all() 
     {
         $xwing_planes = parent::all();
-        $wacky_planes = json_decode($this->wackymodel->getAirplanes());
+        $wacky_planes = json_decode($this->wackyModel->getAirplanes());
 
         $xwing_fleet = array();
 
@@ -52,7 +52,7 @@ class PlanesList extends CSV_Model
     {
         $plane       = parent::get($id);
 
-        $xwing_plane = json_decode($this->wackymodel->getAirplane($plane->airplaneId));
+        $xwing_plane = json_decode($this->wackyModel->getAirplane($plane->airplaneId));
         
         $xwing_plane->id = $id;
 
