@@ -12,6 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Fleet extends Application
 {
+	private $planes_per_page = 10;
 
 	function __construct()
 	{
@@ -23,12 +24,32 @@ class Fleet extends Application
 	 */
 	public function index()
 	{
-    	$role = $this->session->userdata('userrole');
-    	$this->data['pagetitle'] = 'List of Planes('. $role . ')';
+		$planes = $this->planesList->all(); // get all the tasks
+		$this->show_page($planes);
+	}
+	
+	// Show a single page of todo items
+	private function show_page($planes)
+	{
+		$role = $this->session->userdata('userrole');
+		$this->data['pagetitle'] = 'List of Planes('. $role . ')';
+		
+		// build the task presentation output
+		$result = ''; // start with an empty array      
+		foreach ($planes as $plane)
+		{
+			if (!empty($plane->id))
+				$plane->id = $this->app->id($plane->id);
+			$result .= $this->parser->parse('oneplane', (array) $plane, true);
+		}
+		// and then pass them on
+		$this->data['display_fleet'] = $result;
 		$this->data['pagebody'] = 'fleet';
-		$this->data['fleet'] = $this->planesList->all();
 		$this->render();
 	}
+
+
+
 
   /**
 	 * Show just one Plane.
