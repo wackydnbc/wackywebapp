@@ -32,8 +32,64 @@ class Welcome extends Application {
 		$this->data['base_location'] 	 	= $base_airport["location"];
 		$this->data['flights_count']		= $flights_count;
 
+
+		$flightsList = new FlightsList();
+		$planesList = new PlanesList();
+		$wackyModel = new WackyModel();
+		$this->ourPlanes = $planesList->all();
+		$this->ourFlights = $flightsList->all();
+		$this->wackyAirlines = json_decode($wackyModel->getAirlines());
+		$this->wackyAirports = json_decode($wackyModel->getAirports());
+		$this->wackyRegions = json_decode($wackyModel->getRegions());
+		$this->wackyAirplanes = json_decode($wackyModel->getAirplanes());
+
+		var_dump($this->ourFlights);
+		//	var_dump($this->wackyAirlines);
+		//	var_dump($this->wackyAirports);
+
+		$ourPlaneIds        = array();
+		$ourDepTimes        = array();
+		$firstPlaneDep      = array(); // x1
+		$firstPlaneArr      = array();
+		$secondPlaneDep     = array(); // x2
+		$secondPlaneArr     = array();
+		$thirdPlaneDep      = array(); // x3
+		$thirdPlaneArr      = array();
+		foreach ($this->ourFlights as $ourFlight)
+		{
+			if ($ourFlight->plane_id == 'x1')
+			{
+				array_push($firstPlaneDep, $ourFlight->departure_time);
+				array_push($firstPlaneArr, $ourFlight->arrival_time);
+			} else if ($ourFlight->plane_id == 'x2')
+			{
+				array_push($secondPlaneDep, $ourFlight->departure_time);
+				array_push($secondPlaneArr, $ourFlight->arrival_time);
+			} else if ($ourFlight->plane_id == 'x3')
+			{
+				array_push($thirdPlaneDep, $ourFlight->departure_time);
+				array_push($thirdPlaneArr, $ourFlight->arrival_time);
+			}
+		}
+		var_dump($firstPlaneDep);
+		var_dump($firstPlaneArr);
+
+		for ($i = 0, $j = 1; $i < 4, $j < 4; $i++, $j++)
+		{
+			var_dump($this->convertDateToHoursInt($firstPlaneDep[$j]));
+			var_dump($this->convertDateToHoursInt(date("Y-m-d H:i:s", strtotime($firstPlaneArr[$i] . " +30 minutes"))));
+		}
+
 		$this->data = array_merge($this->data, $destination_airports);
 
 		$this->render();
+	}
+
+	public function convertDateToHoursInt($date)
+	{
+		$dateCopy = substr($date, 11, -3); // remove date and ms
+		$dateCopy = str_replace(':', '', $dateCopy); // remove :
+		$dateCopy = intval($dateCopy); // convert to an int to compare
+		return $dateCopy;
 	}
 }
