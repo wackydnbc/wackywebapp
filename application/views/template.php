@@ -50,8 +50,16 @@ if (!defined('APPPATH'))
             </div>
         </div>
     </div>
-    <script src="/assets/js/jquery-1.11.1.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
+    <script>
+		$('#submit_depart_dest').on('click', function(){
+			window.location.search = "dept=" +$("#departure_select").val() + "&dest=" +  $("#destination_select").val();
+		})
+	</script>
 </div>
 </body>
 </html>

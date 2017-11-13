@@ -158,6 +158,17 @@ class Flight extends Entity
         return $dest_airports;
     }
 
+    public function getXWingAirports(){
+        $xwing_airport_keys = json_decode($this->wackyModel->getAirline(AIRLINE_XWING_ID),true);
+        $xwing_airports = array();
+        foreach ($xwing_airport_keys as $key => $value) {
+            if($key!= 'id'){
+                array_push($xwing_airports,json_decode($this->wackyModel->getAirport($value),true));
+            }
+        }
+        return $xwing_airports;
+    }
+
     public function count()
     {
         return count($this->data);
