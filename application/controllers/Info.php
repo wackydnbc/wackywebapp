@@ -35,10 +35,4 @@ class Info extends Application
 		header('Content-Type: application/json');
 		echo json_encode($this->flight->all(), JSON_PRETTY_PRINT);
 	}
-
-	public function airports()
-	{
-		header('Content-Type: application/json');
-		echo json_encode($this->flight->getXWingAirports(), JSON_PRETTY_PRINT);
-	}
 }
