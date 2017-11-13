@@ -38,8 +38,13 @@ class Flightbooking extends Application {
         $all_flights = $this->flightsList->all();
         foreach ($all_flights as $key => $flight) {
             if($flight->departure_airport == $dept){
-                array_push($checked_ids, $flight);
-                array_push($deptflights, $flight);
+                if ($flight->arrival_airport == $dest) {
+                    array_push($checked_ids, $flight->id);
+                    array_push($result, array($flight));
+                } else {
+                    array_push($checked_ids, $flight->id);
+                    array_push($deptflights, $flight);
+                }
             }
         }
         //potential booking
@@ -56,7 +61,7 @@ class Flightbooking extends Application {
                             && strtotime($deptflight->arrival_time) < strtotime($flight->arrival_time))
                         {
                             //first flight and middle flight
-                            $bookings[$count++] = array($deptflight, $flight);
+                            array_push($bookings, array($deptflight, $flight));
                             //array_push($checked_ids, $flight);
                         }
             }
