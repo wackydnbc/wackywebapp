@@ -20,3 +20,9 @@ Additions: Newest additions last
 - Updated about page  
 - Randomized Flight data for today's date was modified to meet all the requirements.
 
+## 2017-11-10  
+- Added setters and unit tests for entity classes, initial collection tests
+- Enabling travis-ci, generate and .gitignore code coverage logs  
+
+## 2017-11-12
+- Collections classes tests enabled and passing  

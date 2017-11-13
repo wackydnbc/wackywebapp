@@ -7,10 +7,14 @@
  *
  * @author jim
  */
-class Flight extends CI_Model
+class Flight extends Entity
 {
-
     var $data;
+	var $plane_id,
+		$departure_time,
+		$arrival_time,
+		$departure_airport,
+		$arrival_airport;
 
     function randomDate($sStartDate, $sEndDate, $sFormat = 'Y-m-d H:i:s')
     {
@@ -23,6 +27,7 @@ class Flight extends CI_Model
         return date($sFormat, $fVal);
     }
 
+    /*
     function generateData(){
         $today = strtotime(date("Y-m-d H:i:s", mktime(0,0,0)));
         $dummies = array(
@@ -105,19 +110,19 @@ class Flight extends CI_Model
         );
         return $dummies;
     }
-
-
+    */
 
     // Constructor
     public function __construct()
     {
         parent::__construct();
+        /*
         $this->data = $this->generateData();
         // inject each "record" key into the record itself, for ease of presentation
         foreach ($this->data as $key => $record) {
             $record['key'] = $key;
             $this->data[$key] = $record;
-        }
+        }*/
     }
 
     // retrieve a single flight, null if not found
@@ -149,4 +154,58 @@ class Flight extends CI_Model
         return count($this->data);
     }
 
+	//	plane_id                integer, non-negative
+	//	departure_time          correct date format, no departures before 08:00
+	//	arrival_time            correct date format, no landings after 22:00
+	//	departure_airport       YYJ, YVR, YBL, YPW
+	//	arrival_airport         YYJ, YVR, YBL, YPW
+	public function setPlaneId($value)
+	{
+		if ((is_numeric($value)) && ($value > 0))
+		{
+			$this->plane_id = $value;
+		}
+	}
+
+	public function setDepartureTime($value)
+	{
+		// check if date format is correct
+		if ($value == date('Y-m-d H:i:s',strtotime($value)))
+		{
+			// no departures before 08:00
+			if (date("H:i:s", strtotime($value)) > "08:00:00")
+			{
+				$this->departure_time = $value;
+			}
+		}
+	}
+
+	public function setArrivalTime($value)
+	{
+		// check if date format is correct
+		if ($value == date('Y-m-d H:i:s',strtotime($value)))
+		{
+			// no landings after 22:00
+			if (date("H:i:s", strtotime($value)) < "22:00:00")
+			{
+				$this->arrival_time = $value;
+			}
+		}
+	}
+
+	public function setDepartureAirport($value)
+	{
+		if (($value == "YYJ") || ($value == "YVR") || ($value == "YBL") || ($value == "YPW"))
+		{
+			$this->departure_airport = $value;
+		}
+	}
+
+	public function setArrivalAirport($value)
+	{
+		if (($value == "YYJ") || ($value == "YVR") || ($value == "YBL") || ($value == "YPW"))
+		{
+			$this->arrival_airport = $value;
+		}
+	}
 }

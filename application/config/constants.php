@@ -83,3 +83,19 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+// Define user/admin roles
+defined('ROLE_GUEST') OR define('ROLE_GUEST', 'Guest');
+defined('ROLE_OWNER') OR define('ROLE_OWNER', 'Owner');
+
+
+/*
+|--------------------------------------------------------------------------
+| Wacky Urls
+|--------------------------------------------------------------------------
+|
+*/
+defined('WACKY_AIRLINES_URL')  OR define('WACKY_AIRLINES_URL', 'https://wacky.jlparry.com/info/airlines/');
+defined('WACKY_AIRPORTS_URL')  OR define('WACKY_AIRPORTS_URL', 'https://wacky.jlparry.com/info/airports/');
+defined('WACKY_AIRPLANES_URL') OR define('WACKY_AIRPLANES_URL', 'https://wacky.jlparry.com/info/airplanes/');
+defined('WACKY_REGIONS_URL')   OR define('WACKY_REGIONS_URL', 'https://wacky.jlparry.com/info/regions/');
