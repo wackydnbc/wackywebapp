@@ -23,3 +23,6 @@ Additions: Newest additions last
 ## 2017-11-10  
 - Added setters and unit tests for entity classes, initial collection tests
 - Enabling travis-ci, generate and .gitignore code coverage logs  
+
+## 2017-11-12
+- Collections classes tests enabled and passing  
