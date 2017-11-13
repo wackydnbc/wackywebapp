@@ -11,9 +11,7 @@
 	<div class="col-md-6">
 		<div class="panel panel-danger">
 			<div class="panel-heading">Base Airport</div>
-			<div class="panel-body">
-			 {base_airport_code} - {base_location}
-			</div>
+			{base_airport_panel}
 		</div>
 	</div>
 </div>
@@ -23,9 +21,7 @@
 		<div class="panel panel-success">
 			<div class="panel-heading">Destination Airports</div>
 			<div class="panel-body">
-				<p>{dest1}</p>
-				<p>{dest2}</p>
-				<p>{dest3}</p>
+			{destination_airports_panel}
 			</div>
 		</div>
 	</div>

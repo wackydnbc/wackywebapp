@@ -14,7 +14,8 @@ class Flight extends Entity
 		$departure_time,
 		$arrival_time,
 		$departure_airport,
-		$arrival_airport;
+        $arrival_airport;
+    
 
     function randomDate($sStartDate, $sEndDate, $sFormat = 'Y-m-d H:i:s')
     {
@@ -139,14 +140,22 @@ class Flight extends Entity
 
     public function getBaseAirport()
     {
-        return array("airport_code" => "YYJ", "location" => "Victoria, BC");
+        $key = json_decode($this->wackyModel->getAirline(AIRLINE_XWING_ID),true)['base'];
+        return json_decode($this->wackyModel->getAirport($key),true);
     }
 
     public function getDestinationAirports()
     {
-        return array("dest1" => "YVR - Vancouver, BC",
-                     "dest2" => "YBL - Campbell River, BC",
-                     "dest3" => "YPW - Powell River, BC");
+        $dest_airport_keys = json_decode($this->wackyModel->getAirLine(AIRLINE_XWING_ID), true);
+        unset($dest_airport_keys['base']);
+        
+        $dest_airports = array();
+        foreach ($dest_airport_keys as $key => $value) {
+            if($key!= 'id'){
+                array_push($dest_airports,json_decode($this->wackyModel->getAirport($value),true));
+            }
+        }
+        return $dest_airports;
     }
 
     public function count()
