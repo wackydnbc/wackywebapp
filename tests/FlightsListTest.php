@@ -51,10 +51,11 @@ class FlightsListTest extends PHPUnit_Framework_TestCase
 				{
 					// find our departure airport within the server's base, dest1, dest2, dest3
 					// if not found - test failed
-					$this->assertContains($ourDepAirport, [$wackyAirline->base,
-															$wackyAirline->dest1,
-															$wackyAirline->dest2,
-															$wackyAirline->dest3]);
+					$this->assertContains($ourDepAirport,
+						[$wackyAirline->base,
+							$wackyAirline->dest1,
+							$wackyAirline->dest2,
+							$wackyAirline->dest3]);
 				}
 			}
 		}
@@ -79,10 +80,11 @@ class FlightsListTest extends PHPUnit_Framework_TestCase
 				{
 					// find our arrival airport within the server's base, dest1, dest2, dest3
 					// if not found - test failed
-					$this->assertContains($ourArrAirport, [$wackyAirline->base,
-															$wackyAirline->dest1,
-															$wackyAirline->dest2,
-															$wackyAirline->dest3]);
+					$this->assertContains($ourArrAirport,
+						[$wackyAirline->base,
+							$wackyAirline->dest1,
+							$wackyAirline->dest2,
+							$wackyAirline->dest3]);
 				}
 			}
 		}
