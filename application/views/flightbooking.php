@@ -35,19 +35,21 @@
 						<th>Third Leg</th>
 						
 					</tr>
-					<?php foreach ($bookings as $num => $booking) { ?>
-						<tr>
-							<?php foreach ($booking as $num => $flight) { ?>
-								<td>
-									<p>Plane Id: <?php echo $flight->plane_id ?></p>
-									<p>Departure: <?php echo $flight->departure_airport ?></p>
-									<p>Arrival: <?php echo $flight->arrival_airport ?></p>
-									<p>Depart Time: <?php echo $flight->departure_time ?></p>
-									<p>Arrive Time: <?php echo $flight->arrival_time ?></p>
-								</td>
-							<?php } ?>
-						</tr>
-					<?php } ?>
+					<?php if(isset($bookings)): ?>
+						<?php foreach ($bookings as $num => $booking) { ?>
+							<tr>
+								<?php foreach ($booking as $num => $flight) { ?>
+									<td>
+										<p>Plane Id: <?php echo $flight->plane_id ?></p>
+										<p>Departure: <?php echo $flight->departure_airport ?></p>
+										<p>Arrival: <?php echo $flight->arrival_airport ?></p>
+										<p>Depart Time: <?php echo $flight->departure_time ?></p>
+										<p>Arrive Time: <?php echo $flight->arrival_time ?></p>
+									</td>
+								<?php } ?>
+							</tr>
+						<?php } ?>
+					<?php endif ?>
     			</table>
 			</div>
 		</div>
