@@ -17,6 +17,7 @@ class WackyModel extends CI_Model {
     public function getAirlines()
     {
         $response = file_get_contents(WACKY_AIRLINES_URL);
+        return $response;
     }
 
     /*

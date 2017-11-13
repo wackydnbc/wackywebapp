@@ -18,7 +18,7 @@ class PlanesList extends CSV_Model
 		return count($this->_data);
     }
     
-    public function all() 
+    public function all()
     {
         $xwing_planes = parent::all();
         $wacky_planes = json_decode($this->wackyModel->getAirplanes());
@@ -36,7 +36,13 @@ class PlanesList extends CSV_Model
                     $xwing_plane['key']          = $xwing->airplaneId;
                     $xwing_plane['model']        = $wacky->model;
                     $xwing_plane['manufacturer'] = $wacky->manufacturer;
-
+                    $xwing_plane['price']        = $wacky->price;
+	                $xwing_plane['price']        = $wacky->price;
+	                $xwing_plane['seats']        = $wacky->seats;
+	                $xwing_plane['reach']        = $wacky->reach;
+	                $xwing_plane['cruise']        = $wacky->cruise;
+	                $xwing_plane['takeoff']        = $wacky->takeoff;
+	                $xwing_plane['hourly']        = $wacky->hourly;
                     array_push($xwing_fleet, $xwing_plane);
                 }
             }
@@ -57,5 +63,24 @@ class PlanesList extends CSV_Model
         $xwing_plane->id = $id;
 
         return $xwing_plane;
+    }
+
+    
+	// provide form validation rules
+    public function rules()
+    {
+        $config = array(
+            ['field' => 'id', 'label' => 'Plane Id', 'rules' => 'integer|greater_than[0]'],
+            ['field' => 'model', 'label' => 'Plane Model', 'rules' => 'alpha_numeric_spaces|max_length[64]'],
+            ['field' => 'manufacturer', 'label' => 'Plane Manufacturer', 'rules' => 'alpha_numeric_spaces|max_length[64]'],
+            ['field' => 'price', 'label' => 'Plane Price', 'rules' => 'integer|greater_than[0]'],
+            ['field' => 'seats', 'label' => 'Seats', 'rules' => 'integer|greater_than[0]'],
+            ['field' => 'reach', 'label' => 'Flight Reach', 'rules' => 'integer|greater_than[0]'],
+            ['field' => 'cruise', 'label' => 'Cruising Speed', 'rules' => 'integer|greater_than[0]'],
+            ['field' => 'takeoff', 'label' => 'Takeoff Distance', 'rules' => 'integer|greater_than[0]'],
+            ['field' => 'hourly', 'label' => 'Hourly Operating Cost', 'rules' => 'integer|greater_than[0]'],
+            
+        );
+        return $config;
     }
 }
