@@ -39,7 +39,11 @@ class Fleet extends Application
 		{
 			if (!empty($plane->id))
 				$plane->id = $this->app->id($plane->id);
-			$result .= $this->parser->parse('oneplane', (array) $plane, true);
+			// If admin/owner, link to edit page, show page for guest users
+			if ($role == ROLE_OWNER)
+				$result .= $this->parser->parse('oneplanex', (array) $plane, true);
+			else
+				$result .= $this->parser->parse('oneplane', (array) $plane, true);
 		}
 		// and then pass them on
 		$this->data['display_fleet'] = $result;
@@ -65,6 +69,10 @@ class Fleet extends Application
 			if ($count >= $this->planes_per_page) break;
 		}
 		$this->data['pagination'] = $this->pagenav($num);
+		// If user is admin/owner, then include 'add plane' button
+		$role = $this->session->userdata('userrole');
+			if ($role == ROLE_OWNER) 
+				$this->data['pagination'] .= $this->parser->parse('planeadd',[], true);
 		$this->show_page($planes);
 	}
 	
@@ -78,6 +86,108 @@ class Fleet extends Application
 			'last' => $lastpage
 		);
 		return $this->parser->parse('fleetnav',$parms,true);
+	}
+
+
+	// Initiate adding a new plane
+	public function add()
+	{
+		$plane = $this->planesList->create();
+		$this->session->set_userdata('plane', $plane);
+		$this->showit();
+	}
+	// initiate editing of a task
+	public function edit($id = null)
+	{
+		if ($id == null)
+			redirect('/fleet');
+		$plane = $this->planesList->get($id);
+		$this->session->set_userdata('plane', $plane);
+		$this->showit();
+	}
+
+	// Render the current plane
+	// showit() called when admin/owner clicks on plane id in fleet page
+	public function showit($key = "x1")
+	{
+		$this->load->helper('form');
+		//$plane =  $this->session->userdata('plane');
+		$plane = $this->planesList->get( $key );
+		// if no errors, pass an empty message
+		if ( ! isset($this->data['error']))
+			$this->data['error'] = '';
+			
+		$fields = array(
+			'fid'      => form_label('Plane Id') . form_input('plane', $plane->id),
+			'fmodel'  => form_label('Plane Model') . form_input('model', $plane->model),
+			'fmanufacturer'  => form_label('Plane Manufacturer') . form_input('manufacturer', $plane->manufacturer),
+			'fprice'  => form_label('Price') . form_input('price', $plane->price),
+			'fseats'  => form_label('Seats') . form_input('seats', $plane->seats),
+			'freach'  => form_label('Reach') . form_input('model', $plane->model),
+			'fcruise'  => form_label('Avg Cruising Speed') . form_input('cruise', $plane->cruise),
+			'ftakeoff'  => form_label('Takeoff Distance') . form_input('takeoff', $plane->takeoff),
+			'fhourly'  => form_label('Hourly Cost') . form_input('hourly', $plane->hourly),
+			'zsubmit'    => form_submit('submit', 'Update the Plane'),
+		);
+		// pass on the data to present, adding the plane's record's fields
+		$this->data = array_merge( $this->data, (array) $fields );
+		$this->data['pagebody'] = 'planeedit';
+		$this->render();
+	}
+
+	// handle form submission
+	public function submit()
+	{
+		// setup for validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules($this->planesList->rules());
+
+		// retrieve & update data transfer buffer
+		$plane = (array) $this->session->userdata('plane');
+		$plane = array_merge($plane, $this->input->post());
+		$plane = (object) $plane;  // convert back to object
+		$this->session->set_userdata('plane', (object) $plane);
+
+		// validate away
+		if ($this->form_validation->run())
+		{
+			if (empty($plane->id))
+			{
+				$plane->id = $this->plane->id;
+				//$this->planesList->add($plane);
+				$this->alert('Plane ' . $plane->id . ' added', 'success');
+			} else
+			{
+				//$this->planesList->update($plane);
+				$this->alert('Plane ' . $plane->id . ' updated', 'success');
+			}
+		} else
+		{
+			$this->alert('<strong>Validation errors!<strong><br>' . validation_errors(), 'danger');
+		}
+		$this->index();
+	}
+
+	// build a suitable error mesage
+	private function alert($message) {
+		$this->load->helper('html');        
+		$this->data['error'] = heading($message,3);
+	}
+
+	// Forget about this edit
+	function cancel() {
+		$this->session->unset_userdata('plane');
+		$this->index();
+	}
+
+	// Delete this item altogether
+	function delete()
+	{
+		//$airplane = $this->session->userdata('plane');
+		//$plane = $this->planesList->get($airplane->id);
+		//$this->planesList->delete($plane->id);
+		$this->session->unset_userdata('plane');
+		$this->index();
 	}
 
   /**

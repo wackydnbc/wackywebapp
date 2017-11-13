@@ -58,4 +58,23 @@ class PlanesList extends CSV_Model
 
         return $xwing_plane;
     }
+
+    
+	// provide form validation rules
+    public function rules()
+    {
+        $config = array(
+            ['field' => 'id', 'label' => 'Plane Id', 'rules' => 'integer|greater_than[0]'],
+            ['field' => 'model', 'label' => 'Plane Model', 'rules' => 'alpha_numeric_spaces|max_length[64]'],
+            ['field' => 'manufacturer', 'label' => 'Plane Manufacturer', 'rules' => 'alpha_numeric_spaces|max_length[64]'],
+            ['field' => 'price', 'label' => 'Plane Price', 'rules' => 'integer|greater_than[0]'],
+            ['field' => 'seats', 'label' => 'Seats', 'rules' => 'integer|greater_than[0]'],
+            ['field' => 'reach', 'label' => 'Flight Reach', 'rules' => 'integer|greater_than[0]'],
+            ['field' => 'cruise', 'label' => 'Cruising Speed', 'rules' => 'integer|greater_than[0]'],
+            ['field' => 'takeoff', 'label' => 'Takeoff Distance', 'rules' => 'integer|greater_than[0]'],
+            ['field' => 'hourly', 'label' => 'Hourly Operating Cost', 'rules' => 'integer|greater_than[0]'],
+            
+        );
+        return $config;
+    }
 }
