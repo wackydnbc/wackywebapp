@@ -86,6 +86,11 @@ class Plane extends Entity
 		return count($this->data);
 	}
 
+	public function generateId()
+	{
+		return "x" . rand();
+	}
+
 	//	id                  integer, non-negative
 	//	manufacturer        string
 	//	model               string

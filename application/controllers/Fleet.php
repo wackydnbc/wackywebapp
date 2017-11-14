@@ -72,7 +72,7 @@ class Fleet extends Application
 		// If user is admin/owner, then include 'add plane' button
 		$role = $this->session->userdata('userrole');
 			if ($role == ROLE_OWNER) 
-				$this->data['pagination'] .= $this->parser->parse('planeadd',[], true);
+				$this->data['pagination'] .= $this->parser->parse('planeaddbutton',[], true);
 		$this->show_page($planes);
 	}
 	
@@ -94,7 +94,7 @@ class Fleet extends Application
 	{
 		$plane = $this->planesList->create();
 		$this->session->set_userdata('plane', $plane);
-		$this->showit();
+		$this->showAdd();
 	}
 	// initiate editing of a task
 	public function edit($id = null)
@@ -108,17 +108,26 @@ class Fleet extends Application
 
 	// Render the current plane
 	// showit() called when admin/owner clicks on plane id in fleet page
-	public function showit($key = "x1")
+	public function showit($key = null)
 	{
 		$this->load->helper('form');
-		//$plane =  $this->session->userdata('plane');
-		$plane = $this->planesList->get( $key );
+
+		if ($key != null) {
+			$plane = $this->planesList->get( $key );
+		} else {
+			$plane = $this->planesList->create();
+		}
+
+		$this->session->set_userdata('plane', $plane);
+
 		// if no errors, pass an empty message
 		if ( ! isset($this->data['error']))
 			$this->data['error'] = '';
-			
+		
+		
 		$fields = array(
-			'fid'      => form_label('Plane Id') . form_input('plane', $plane->id),
+			'fid'      => form_label('Plane Id') . form_input('id', $plane->id),
+			'fplanecode'  => form_label('Plane Code') . form_input('airplaneId', $plane->airplaneId),
 			'fmodel'  => form_label('Plane Model') . form_input('model', $plane->model),
 			'fmanufacturer'  => form_label('Plane Manufacturer') . form_input('manufacturer', $plane->manufacturer),
 			'fprice'  => form_label('Price') . form_input('price', $plane->price),
@@ -129,9 +138,34 @@ class Fleet extends Application
 			'fhourly'  => form_label('Hourly Cost') . form_input('hourly', $plane->hourly),
 			'zsubmit'    => form_submit('submit', 'Update the Plane'),
 		);
+
 		// pass on the data to present, adding the plane's record's fields
 		$this->data = array_merge( $this->data, (array) $fields );
 		$this->data['pagebody'] = 'planeedit';
+		$this->render();
+	}
+
+	public function showAdd() 
+	{
+		$this->load->helper('form');
+
+		$plane = $this->planesList->create();
+
+
+		$this->session->set_userdata('plane', $plane);
+		
+		// if no errors, pass an empty message
+		if ( ! isset($this->data['error']))
+			$this->data['error'] = '';
+
+		$fields = array(
+			'fplanecode'  => form_label('Plane Code to Add: ') . form_input('airplaneId', $plane->airplaneId),
+			'zsubmit'    => form_submit('submit', 'Add the Plane')
+		);
+
+		// pass on the data to present, adding the plane's record's fields
+		$this->data = array_merge( $this->data, (array) $fields );
+		$this->data['pagebody'] = 'planeadd';
 		$this->render();
 	}
 
@@ -143,9 +177,15 @@ class Fleet extends Application
 		$this->form_validation->set_rules($this->planesList->rules());
 
 		// retrieve & update data transfer buffer
-		$plane = (array) $this->session->userdata('plane');
-		$plane = array_merge($plane, $this->input->post());
-		$plane = (object) $plane;  // convert back to object
+		$plane_orig = (array) $this->session->userdata('plane');
+		$plane_orig = array_merge($plane_orig, $this->input->post());
+		$plane_orig = (object) $plane_orig;  // convert back to object
+
+		// From the post data only retrieve the id and airplane id
+		$plane 			   = new stdClass;
+		$plane->id 		   = $plane_orig->id;
+		$plane->airplaneId = $plane_orig->airplaneId;
+
 		$this->session->set_userdata('plane', (object) $plane);
 
 		// validate away
@@ -153,15 +193,24 @@ class Fleet extends Application
 		{
 			if (empty($plane->id))
 			{
-				$plane->id = $this->plane->id;
-				//$this->planesList->add($plane);
-				$this->alert('Plane ' . $plane->id . ' added', 'success');
-			} else
+				if ($this->planesList->addPlaneCheck($plane)) 
+				{
+					$plane->id = $this->plane->generateId();
+					$this->planesList->add($plane);
+					$this->alert('Plane ' . $plane->id . ' added', 'success');
+				}
+				else 
+				{
+					$this->alert('<strong>Cannot add plane! We\'re either out of budget or not within xwing\'s fleet<strong><br>' . 'error adding plane', 'danger');
+				}
+			} 
+			else
 			{
-				//$this->planesList->update($plane);
+				$this->planesList->update($plane);
 				$this->alert('Plane ' . $plane->id . ' updated', 'success');
 			}
-		} else
+		} 
+		else
 		{
 			$this->alert('<strong>Validation errors!<strong><br>' . validation_errors(), 'danger');
 		}
@@ -175,19 +224,21 @@ class Fleet extends Application
 	}
 
 	// Forget about this edit
-	function cancel() {
+	public function cancel() {
 		$this->session->unset_userdata('plane');
 		$this->index();
 	}
 
 	// Delete this item altogether
-	function delete()
+	public function delete()
 	{
-		//$airplane = $this->session->userdata('plane');
-		//$plane = $this->planesList->get($airplane->id);
-		//$this->planesList->delete($plane->id);
-		$this->session->unset_userdata('plane');
-		$this->index();
+		$plane = $this->session->userdata('plane');
+
+		if ($plane->id != null && !empty($plane->id)) {
+			$this->planesList->delete($plane->id);
+			$this->session->unset_userdata('plane');
+			$this->index();
+		}
 	}
 
   /**

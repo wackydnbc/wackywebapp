@@ -2,6 +2,9 @@
 <h1>Edit Plane</h1>
 <form role="form" action="/fleet/submit" method="post">
     {fid}<br />
+    {fplanecode}<br />
+
+    <h3>Plane Information: </h3>
     {fmodel}<br />
     {fmanufacturer}<br />
     {fprice}<br />
