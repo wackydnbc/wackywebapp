@@ -95,7 +95,7 @@ defined('ROLE_OWNER') OR define('ROLE_OWNER', 'Owner');
 |--------------------------------------------------------------------------
 |
 */
-defined('WACKY_AIRLINES_URL')  OR define('WACKY_AIRLINES_URL', 'https://wacky.jlparry.com/info/airlines/');
-defined('WACKY_AIRPORTS_URL')  OR define('WACKY_AIRPORTS_URL', 'https://wacky.jlparry.com/info/airports/');
-defined('WACKY_AIRPLANES_URL') OR define('WACKY_AIRPLANES_URL', 'https://wacky.jlparry.com/info/airplanes/');
-defined('WACKY_REGIONS_URL')   OR define('WACKY_REGIONS_URL', 'https://wacky.jlparry.com/info/regions/');
+defined('WACKY_AIRLINES_URL')  OR define('WACKY_AIRLINES_URL', 'http://wacky.jlparry.com/info/airlines/');
+defined('WACKY_AIRPORTS_URL')  OR define('WACKY_AIRPORTS_URL', 'http://wacky.jlparry.com/info/airports/');
+defined('WACKY_AIRPLANES_URL') OR define('WACKY_AIRPLANES_URL', 'http://wacky.jlparry.com/info/airplanes/');
+defined('WACKY_REGIONS_URL')   OR define('WACKY_REGIONS_URL', 'http://wacky.jlparry.com/info/regions/');
