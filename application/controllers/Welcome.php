@@ -20,19 +20,22 @@ class Welcome extends Application {
 	 */
 	public function index()
 	{
-		$airlines_count		  = $this->planesList->count();
-		$flights_count		  = $this->flightsList->count();
-		$base_airport		  = $this->flight->getBaseAirport();
-		$destination_airports = $this->flight->getDestinationAirports();
+		$airlines_count		  						= $this->planesList->count();
+		$flights_count		  						= $this->flightsList->count();
+		$base_airport		  						= $this->flight->getBaseAirport();
+		$destination_airports 						= $this->flight->getDestinationAirports();
+		$airports = array();
 
-		$this->data['pagetitle']            = 'Home';
-		$this->data['pagebody'] 		 	= 'homepage';
-		$this->data['airlines_count'] 	 	= $airlines_count;
-		$this->data['base_airport_code'] 	= $base_airport["airport_code"];
-		$this->data['base_location'] 	 	= $base_airport["location"];
-		$this->data['flights_count']		= $flights_count;
+		$this->data['pagetitle']            		= 'Home';
+		$this->data['pagebody'] 		 			= 'homepage';
+		
+		array_push($airports, $base_airport);
+		$this->data['base_airport_panel'] 			= $this->parser->parse('_airportpanel', $airports, true);
+		$airports = $destination_airports;
+		$this->data['destination_airports_panel']	= $this->parser->parse('_airportpanel', $airports, true);
+		$this->data['airlines_count'] 	 			= $airlines_count;
+		$this->data['flights_count']				= $flights_count;
 
-		$this->data = array_merge($this->data, $destination_airports);
 
 		$this->render();
 	}
